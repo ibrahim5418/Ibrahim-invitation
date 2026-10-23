@@ -1,0 +1,255 @@
+@font-face { font-family: "Allura"; src: url("./assets/fonts/Allura-Regular.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Amiri"; src: url("./assets/fonts/Amiri-Regular.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "DM Sans"; src: url("./assets/fonts/DMSans-Variable.ttf") format("truetype"); font-weight: 100 1000; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url("./assets/fonts/CormorantGaramond-Variable.ttf") format("truetype"); font-weight: 300 700; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url("./assets/fonts/CormorantGaramond-Italic-Variable.ttf") format("truetype"); font-weight: 300 700; font-style: italic; font-display: swap; }
+
+:root {
+  --ivory: #F7EFE5;
+  --cream: #FBF6EE;
+  --beige: #E8D8C0;
+  --card: #EDE3D6;
+  --cocoa: #4A372F;
+  --taupe: #6F5B52;
+  --muted: #8C7568;
+  --rose: #B9787A;
+  --rose-caps: #B07C6C;
+  --gold: #C9A25E;
+  --chocolate: #6B4C3E;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+html.is-locked, html.is-locked body { overflow: hidden; }
+body { margin: 0; background: #EFE6DA; color: var(--taupe); font-family: "Cormorant", Georgia, serif; -webkit-font-smoothing: antialiased; }
+p, h1, h2, h3 { margin: 0; font-weight: 400; }
+img { display: block; max-width: 100%; }
+
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--ivory);
+  overflow-x: clip;
+  box-shadow: 0 0 60px rgba(74, 55, 47, 0.12);
+}
+
+/* ---------- type ---------- */
+.script { font-family: "Allura", cursive; font-weight: 400; line-height: 1.2; }
+.caps { font-family: "DM Sans", sans-serif; text-transform: uppercase; font-weight: 500; }
+.kicker {
+  font-family: "DM Sans", sans-serif; text-transform: uppercase; font-weight: 500;
+  font-size: 12.5px; letter-spacing: 0.26em; padding-left: 0.26em; color: var(--rose-caps);
+}
+.heading { font-size: min(46px, 10.8vw); color: var(--cocoa); margin-top: 12px; white-space: nowrap; }
+.body-serif { font-size: 20px; line-height: 1.8; color: var(--muted); margin: 18px auto 0; max-width: 360px; }
+.body-italic { font-family: "Cormorant", serif; font-style: italic; font-size: 20px; line-height: 1.75; color: var(--muted); margin: 28px auto 0; max-width: 340px; }
+.couple { font-size: 40px; color: var(--rose); margin-top: 26px; }
+.amp { font-size: 0.72em; margin: 0 0.12em; }
+
+/* ---------- ornaments ---------- */
+.diamond-rule { display: flex; align-items: center; gap: 8px; margin: 18px auto 0; }
+.diamond-rule span { flex: 1; height: 1px; background: var(--gold); opacity: 0.85; }
+.garland { position: absolute; left: 0; right: 0; z-index: 3; pointer-events: none; mix-blend-mode: multiply; }
+/* white backgrounds vanish into the section colour; the crop trims garland.jpg's empty top and bottom */
+.garland img { width: 94%; margin: 0 auto; aspect-ratio: 1376 / 330; object-fit: cover; object-position: center 48%; }
+.garland-top { top: 0; transform: translateY(-50%); }
+.garland-bottom { bottom: 0; transform: translateY(50%); }
+.garland-fallback { display: flex; align-items: center; gap: 10px; padding: 0 12%; height: 30px; }
+.garland-fallback span { flex: 1; height: 1px; background: var(--gold); opacity: 0.6; }
+.garland-fallback i { width: 10px; height: 10px; transform: rotate(45deg); background: var(--gold); opacity: 0.8; }
+
+/* ---------- sections ---------- */
+.sec { position: relative; padding: 84px 16px 88px; text-align: center; }
+.sec-ivory { background: var(--ivory); }
+.sec-beige { background: linear-gradient(180deg, #EADBC4, #E5D2B7); }
+
+.blessed { overflow-x: clip; padding-top: 84px; padding-bottom: 96px; }
+.ring { position: absolute; width: 360px; height: 360px; border: 1px solid rgba(176, 140, 120, 0.22); border-radius: 50%; pointer-events: none; }
+.ring-l { left: -300px; top: 10%; }
+.ring-r { right: -250px; bottom: -40px; }
+
+/* hero */
+/*
+ * The stage image and the intro film share one size: at least 118% of the
+ * column (so the arched panel is wide enough for the names), and wide enough
+ * for a 9:16 film to fill the screen's height. Both are centred and top-aligned.
+ */
+.hero { position: relative; overflow: hidden; background: var(--cream); }
+.hero-stage {
+  position: relative; left: 50%; transform: translateX(-50%);
+  width: max(118%, calc(100vh * 0.5625));
+  width: max(118%, calc(100svh * 0.5625));
+  container-type: inline-size;
+}
+.hero-art { width: 100%; height: auto; }
+.hero.is-fallback .hero-stage {
+  aspect-ratio: 768 / 1376;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 8%, rgba(255, 244, 222, 0.9), transparent 70%),
+    linear-gradient(90deg, #E9D9C2 0 20%, #F8F0E4 24% 76%, #E9D9C2 80%);
+}
+/* positions are in the stage image's own units: its empty arch spans 23–77% across, 46–145cqw down */
+.hero-text {
+  position: absolute; left: 24%; right: 24%; top: 53cqw;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+/* one line, sized to sit inside the arch where it is wide enough */
+.bismillah { font-family: "Amiri", serif; color: #6E5446; font-size: 4.4cqw; line-height: 1.4; white-space: nowrap; }
+.hero-text .diamond-rule { margin-top: 1.8cqw; }
+.hero-caps { font-size: 2.1cqw; letter-spacing: 0.12em; line-height: 1.6; color: var(--taupe); margin-top: 3.4cqw; }
+.hero-name { font-size: 7.4cqw; color: var(--rose); margin-top: 2.2cqw; white-space: nowrap; }
+.hero-of { font-size: 2cqw; letter-spacing: 0.16em; color: var(--taupe); margin-top: 0.3cqw; }
+.hero-parents { font-style: italic; font-size: 3cqw; color: var(--taupe); margin-top: 0.8cqw; }
+.hero-amp { font-style: italic; font-size: 6.6cqw; line-height: 1; color: var(--gold); margin-top: 2cqw; }
+.hero-amp + .hero-name { margin-top: 1cqw; }
+.hero-forever { margin-top: 4.4cqw; }
+.hero-scroll { font-size: 2cqw; letter-spacing: 0.2em; color: var(--cocoa); margin-top: 7cqw; }
+.hero-scroll-line { width: 1px; height: 4.5cqw; margin-top: 1.4cqw; background: linear-gradient(var(--gold), rgba(201, 162, 94, 0)); }
+
+/* scratch */
+.scratch-sec { padding-bottom: 104px; }
+/* full-bleed frame; the window matches the empty white area inside scratch-frame.jpg */
+.scratch-frame { position: relative; width: calc(100% + 32px); margin: 26px -16px 0; aspect-ratio: 1376 / 768; container-type: inline-size; }
+.scratch-frame-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; mix-blend-mode: multiply; }
+.scratch-window {
+  position: absolute; left: 21.8%; right: 21.5%; top: 32.5%; bottom: 20.6%;
+  border-radius: 8px; overflow: hidden; background: var(--cream);
+  user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+}
+.scratch-frame.is-fallback { border: 1px solid var(--gold); outline: 1px solid rgba(201, 162, 94, 0.5); outline-offset: -10px; background: #F3E6D3; border-radius: 6px; }
+.scratch-frame.is-fallback .scratch-window { left: 7%; right: 7%; top: 10%; bottom: 10%; }
+/* the frame's chandelier hangs over the top of the window, so the date sits a little low */
+.scratch-date { position: absolute; inset: 0; padding-top: 14%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.scratch-invited { font-family: "DM Sans", sans-serif; text-transform: uppercase; font-weight: 500; font-size: 2.6cqw; letter-spacing: 0.22em; padding-left: 0.22em; color: var(--rose-caps); }
+.scratch-day { font-size: 6.6cqw; color: var(--cocoa); line-height: 1.1; margin-top: 0.6cqw; font-variant-numeric: lining-nums; }
+.scratch-time { font-family: "DM Sans", sans-serif; font-size: 3.4cqw; color: var(--cocoa); margin-top: 0.8cqw; }
+.scratch-foil { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: grab; transition: opacity 0.8s var(--ease); }
+.scratch-foil.is-cleared { opacity: 0; pointer-events: none; }
+.petal-rain { position: fixed; width: 0; height: 0; z-index: 70; pointer-events: none; }
+.petal { position: absolute; left: 0; top: 0; border-radius: 80% 0 80% 0; box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.08); }
+
+/* festivities */
+.event-list { display: flex; flex-direction: column; gap: 26px; margin-top: 38px; }
+.event-card {
+  background: var(--card);
+  border: 1px solid #D8C3A2;
+  outline: 1px solid rgba(201, 170, 120, 0.45);
+  outline-offset: -11px;
+  padding: 42px 22px 40px;
+  box-shadow: 0 14px 30px -24px rgba(74, 55, 47, 0.45);
+}
+.event-name { font-family: "Cormorant", serif; font-size: 32px; font-weight: 500; color: var(--cocoa); }
+.event-when { font-family: "DM Sans", sans-serif; text-transform: uppercase; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; color: var(--rose-caps); margin-top: 12px; }
+.event-place { font-style: italic; font-size: 19px; color: var(--muted); margin-top: 14px; }
+.btn-outline {
+  display: inline-block; margin-top: 24px; padding: 15px 28px;
+  border: 1.5px solid var(--gold);
+  font-family: "DM Sans", sans-serif; text-transform: uppercase; font-size: 12px; font-weight: 500; letter-spacing: 0.16em;
+  color: var(--cocoa); text-decoration: none;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease);
+}
+.btn-outline:hover, .btn-outline:focus-visible { background: var(--gold); color: var(--cream); outline: none; }
+
+/* with all our hearts */
+.hearts {
+  padding: 120px 26px 124px;
+  background: radial-gradient(ellipse 75% 60% at 50% 50%, #F6EDE3 35%, #E8D5C8 100%);
+}
+.hearts-quote { font-size: 38px; line-height: 1.55; color: var(--cocoa); margin-top: 18px; }
+
+/* venue */
+.venue-sec { padding: 72px 0 96px; }
+.venue-card {
+  width: 80%; margin: 0 auto;
+  background: var(--chocolate);
+  outline: 1px solid rgba(201, 162, 94, 0.55);
+  outline-offset: -14px;
+  padding: 56px 26px 52px;
+  box-shadow: 0 24px 40px -26px rgba(40, 24, 18, 0.6);
+}
+.venue-kicker { font-family: "DM Sans", sans-serif; text-transform: uppercase; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; padding-left: 0.24em; color: var(--gold); }
+.venue-rule { display: flex; align-items: center; gap: 8px; width: 140px; margin: 22px auto 0; }
+.venue-rule span { flex: 1; height: 1px; background: var(--gold); opacity: 0.7; }
+.venue-photo { width: 100%; margin-top: 28px; border: 1px solid rgba(201, 162, 94, 0.8); }
+.venue-name { font-size: 46px; color: var(--cream); margin-top: 26px; }
+.venue-line { font-size: 18px; color: #E4D5C4; margin-top: 12px; line-height: 1.5; }
+.btn-gold { color: var(--cream); margin-top: 30px; }
+
+/* closing */
+.closing { background: linear-gradient(180deg, #EEE1C9, #F5ECDF); padding: 70px 22px 0; }
+.closing-arch {
+  text-wrap: balance;
+  position: relative; width: 92%; margin: 0 auto; padding: 150px 18px 140px;
+  border: 1px solid rgba(140, 110, 90, 0.45); border-bottom: 0;
+  border-radius: 50% 50% 0 0 / 150px 150px 0 0;
+}
+.closing-arch::before {
+  content: ""; position: absolute; inset: 14px 14px 0;
+  border: 1px solid rgba(140, 110, 90, 0.4); border-bottom: 0;
+  border-radius: 50% 50% 0 0 / 138px 138px 0 0;
+}
+.closing-couple { margin-top: 22px; font-size: min(40px, 9.4vw); white-space: nowrap; }
+.closing-line { font-family: "DM Sans", sans-serif; text-transform: uppercase; font-weight: 500; font-size: 12px; letter-spacing: 0.16em; color: var(--gold); margin-top: 26px; line-height: 1.8; }
+
+/* ---------- intro ---------- */
+.intro {
+  position: fixed; top: 0; left: 50%; z-index: 60;
+  width: min(100vw, 480px); height: 100vh; height: 100svh;
+  margin-left: calc(min(100vw, 480px) / -2);
+  overflow: hidden; background: #E9D8C0; cursor: pointer; outline: none;
+}
+.intro-layer { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.intro-tapscene.is-fallback {
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 52%, #FBF4EA, rgba(251, 244, 234, 0) 70%),
+    radial-gradient(ellipse 90% 70% at 50% 50%, #F2E5D2, #E3CDAE 80%, #D8BC96);
+}
+.tap-ui { position: absolute; inset: 0; color: #A47F55; pointer-events: none; }
+.tap-ring {
+  position: absolute; left: 50%; top: 40%; width: 60px; height: 60px; margin: -30px 0 0 -30px;
+  border: 1.5px solid rgba(164, 127, 85, 0.55); border-radius: 50%;
+  animation: ring 2.4s var(--ease) infinite;
+}
+@keyframes ring { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.12); opacity: 0.5; } }
+.flourish { position: absolute; left: 50%; top: 50.5%; width: 46px; transform: translateX(-50%); }
+.tap-text {
+  position: absolute; left: 0; right: 0; top: 52.5%;
+  font-family: "Cormorant", serif; font-weight: 500; font-size: 44px; letter-spacing: 0.02em; color: #A27E55; text-align: center;
+}
+.flourish-under { top: 59.2%; width: 210px; }
+.intro-glow {
+  position: absolute; left: 50%; top: 58%; width: 320px; height: 320px; margin: -160px 0 0 -160px;
+  border-radius: 50%; pointer-events: none; mix-blend-mode: screen;
+  background: radial-gradient(circle, #FFFCF2 0%, rgba(255, 238, 200, 0.95) 18%, rgba(250, 220, 165, 0.55) 42%, rgba(244, 205, 145, 0) 70%);
+}
+.intro-still { position: absolute; top: 0; bottom: 0; left: 0; width: 150%; background-size: cover; background-position: left center; background-color: #F1E3CF; }
+.intro-wall-wrap { overflow: hidden; background: #F1E3CF; }
+.intro-wall { position: absolute; top: 0; left: 0; height: 100%; width: auto; max-width: none; }
+.intro-stage { background-size: 100% auto; background-position: top center; background-color: var(--cream); transform-origin: 50% 30%; }
+/* same size and placement as .hero-stage, so the last frame lines up with the hero */
+.intro-film, .intro-tapscene-img {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: max(118%, calc(100vh * 0.5625));
+  width: max(118%, calc(100svh * 0.5625));
+  height: auto; max-width: none;
+}
+.intro-film { transition: opacity 0.3s; }
+
+/* ---------- music ---------- */
+.music {
+  position: fixed; z-index: 65; top: 14px; right: max(14px, calc(50vw - 240px + 14px));
+  width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(107, 76, 62, 0.72); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center; gap: 3px;
+}
+.music span { width: 2px; height: 12px; background: var(--cream); border-radius: 1px; }
+.music span:nth-child(2) { height: 18px; }
+.music.is-playing span { animation: eq 0.9s ease-in-out infinite alternate; }
+.music.is-playing span:nth-child(2) { animation-delay: -0.3s; }
+.music.is-playing span:nth-child(3) { animation-delay: -0.6s; }
+@keyframes eq { from { transform: scaleY(0.45); } to { transform: scaleY(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .tap-ring, .music.is-playing span { animation: none; }
+}
