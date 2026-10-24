@@ -4,7 +4,7 @@ import { wedding } from "./config";
 import Intro from "./components/Intro";
 import Hero from "./components/Hero";
 import ScratchDate from "./components/ScratchDate";
-import { Blessed, Closing, Festivities, Hearts, Venue } from "./components/Sections";
+import { Blessed, Festivities, Hearts } from "./components/Sections";
 import MusicButton from "./components/MusicButton";
 
 export default function App() {
@@ -30,8 +30,6 @@ export default function App() {
         <ScratchDate />
         <Festivities />
         <Hearts />
-        <Venue />
-        <Closing />
       </main>
       {wedding.music && <MusicButton ref={audioRef} src={wedding.music} />}
       <Intro onTap={handleTap} onDone={() => setReady(true)} />

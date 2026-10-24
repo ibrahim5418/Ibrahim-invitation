@@ -158,39 +158,6 @@ img { display: block; max-width: 100%; }
 }
 .hearts-quote { font-size: 38px; line-height: 1.55; color: var(--cocoa); margin-top: 18px; }
 
-/* venue */
-.venue-sec { padding: 72px 0 96px; }
-.venue-card {
-  width: 80%; margin: 0 auto;
-  background: var(--chocolate);
-  outline: 1px solid rgba(201, 162, 94, 0.55);
-  outline-offset: -14px;
-  padding: 56px 26px 52px;
-  box-shadow: 0 24px 40px -26px rgba(40, 24, 18, 0.6);
-}
-.venue-kicker { font-family: "DM Sans", sans-serif; text-transform: uppercase; font-weight: 500; font-size: 13px; letter-spacing: 0.24em; padding-left: 0.24em; color: var(--gold); }
-.venue-rule { display: flex; align-items: center; gap: 8px; width: 140px; margin: 22px auto 0; }
-.venue-rule span { flex: 1; height: 1px; background: var(--gold); opacity: 0.7; }
-.venue-photo { width: 100%; margin-top: 28px; border: 1px solid rgba(201, 162, 94, 0.8); }
-.venue-name { font-size: 46px; color: var(--cream); margin-top: 26px; }
-.venue-line { font-size: 18px; color: #E4D5C4; margin-top: 12px; line-height: 1.5; }
-.btn-gold { color: var(--cream); margin-top: 30px; }
-
-/* closing */
-.closing { background: linear-gradient(180deg, #EEE1C9, #F5ECDF); padding: 70px 22px 0; }
-.closing-arch {
-  text-wrap: balance;
-  position: relative; width: 92%; margin: 0 auto; padding: 150px 18px 140px;
-  border: 1px solid rgba(140, 110, 90, 0.45); border-bottom: 0;
-  border-radius: 50% 50% 0 0 / 150px 150px 0 0;
-}
-.closing-arch::before {
-  content: ""; position: absolute; inset: 14px 14px 0;
-  border: 1px solid rgba(140, 110, 90, 0.4); border-bottom: 0;
-  border-radius: 50% 50% 0 0 / 138px 138px 0 0;
-}
-.closing-couple { margin-top: 22px; font-size: min(40px, 9.4vw); white-space: nowrap; }
-.closing-line { font-family: "DM Sans", sans-serif; text-transform: uppercase; font-weight: 500; font-size: 12px; letter-spacing: 0.16em; color: var(--gold); margin-top: 26px; line-height: 1.8; }
 
 /* ---------- intro ---------- */
 .intro {
@@ -253,3 +220,5 @@ img { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   .tap-ring, .music.is-playing span { animation: none; }
 }
+/* the last section's bottom garland needs room to hang inside the page */
+.page { padding-bottom: 64px; }
