@@ -36,6 +36,76 @@ function paintFoil(canvas) {
   }
 }
 
+/*
+ * Traces the frame's empty white window (flood fill from its centre) and
+ * returns its bounding box plus a mask of its exact shape, so the foil fills
+ * the window edge to edge without covering the drapes or the chandelier.
+ */
+async function traceWindow(src) {
+  const img = new Image();
+  img.src = src;
+  await img.decode();
+  const W = 344, H = Math.round((W * img.naturalHeight) / img.naturalWidth);
+  const c = document.createElement("canvas");
+  c.width = W;
+  c.height = H;
+  const ctx = c.getContext("2d", { willReadFrequently: true });
+  ctx.drawImage(img, 0, 0, W, H);
+  const px = ctx.getImageData(0, 0, W, H).data;
+  const isWhite = i => px[i * 4] > 232 && px[i * 4 + 1] > 228 && px[i * 4 + 2] > 222;
+
+  let inside = new Uint8Array(W * H);
+  const stack = [Math.round(H * 0.62) * W + (W >> 1)];
+  while (stack.length) {
+    const i = stack.pop();
+    if (inside[i] || !isWhite(i)) continue;
+    inside[i] = 1;
+    const x = i % W;
+    if (x > 0) stack.push(i - 1);
+    if (x < W - 1) stack.push(i + 1);
+    if (i >= W) stack.push(i - W);
+    if (i < W * (H - 1)) stack.push(i + W);
+  }
+  // grow 2px so the foil tucks just under the window's soft edge
+  for (let pass = 0; pass < 2; pass++) {
+    const grown = inside.slice();
+    for (let i = 0; i < inside.length; i++) {
+      if (inside[i]) continue;
+      const x = i % W;
+      if ((x > 0 && inside[i - 1]) || (x < W - 1 && inside[i + 1]) || inside[i - W] || inside[i + W]) grown[i] = 1;
+    }
+    inside = grown;
+  }
+
+  let l = W, r = 0, t = H, b = 0;
+  for (let i = 0; i < inside.length; i++) {
+    if (!inside[i]) continue;
+    const x = i % W, y = (i / W) | 0;
+    if (x < l) l = x;
+    if (x > r) r = x;
+    if (y < t) t = y;
+    if (y > b) b = y;
+  }
+  const m = document.createElement("canvas");
+  m.width = r - l + 1;
+  m.height = b - t + 1;
+  const mctx = m.getContext("2d");
+  const out = mctx.createImageData(m.width, m.height);
+  for (let y = t; y <= b; y++)
+    for (let x = l; x <= r; x++)
+      if (inside[y * W + x]) out.data[((y - t) * m.width + (x - l)) * 4 + 3] = 255;
+  mctx.putImageData(out, 0, 0);
+
+  const pct = (v, total) => `${((v / total) * 100).toFixed(2)}%`;
+  return {
+    left: pct(l, W),
+    right: pct(W - 1 - r, W),
+    top: pct(t, H),
+    bottom: pct(H - 1 - b, H),
+    mask: `url(${m.toDataURL()})`,
+  };
+}
+
 export default function ScratchDate() {
   const { reveal } = wedding;
   const windowRef = useRef(null);
@@ -46,6 +116,11 @@ export default function ScratchDate() {
   const [frameOk, setFrameOk] = useState(true);
   const [revealed, setRevealed] = useState(false);
   const [burstAt, setBurstAt] = useState(null);
+  const [fit, setFit] = useState(null);
+
+  useEffect(() => {
+    traceWindow(art.scratchFrame).then(setFit).catch(() => {});
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -120,7 +195,20 @@ export default function ScratchDate() {
 
       <Reveal>
         <div className={`scratch-frame ${frameOk ? "" : "is-fallback"}`}>
-          <div className="scratch-window" ref={windowRef}>
+          <div
+            className="scratch-window"
+            ref={windowRef}
+            style={
+              fit && frameOk
+                ? {
+                    left: fit.left, right: fit.right, top: fit.top, bottom: fit.bottom,
+                    borderRadius: 0,
+                    WebkitMaskImage: fit.mask, maskImage: fit.mask,
+                    WebkitMaskSize: "100% 100%", maskSize: "100% 100%",
+                  }
+                : undefined
+            }
+          >
             <div className="scratch-date">
               <p className="scratch-invited">You’re invited!</p>
               <p className="scratch-day">{reveal.date}</p>
