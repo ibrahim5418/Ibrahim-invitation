@@ -8,21 +8,21 @@ import { DiamondRule, Garland, Kicker } from "./Ornaments";
 const BRUSH = 30;
 const CLEAR_AT = 0.45;
 
-/* Blush foil with a soft sheen and fine gold glitter, like the reference card. */
+/* Rose foil with a soft sheen, fine gold glitter and the "Scratch here" hint, which scratches away with it. */
 function paintFoil(canvas) {
   const ctx = canvas.getContext("2d");
   const { width: w, height: h } = canvas;
   ctx.globalCompositeOperation = "source-over";
   const g = ctx.createRadialGradient(w * 0.42, h * 0.38, 0, w / 2, h / 2, w * 0.7);
-  g.addColorStop(0, "#F3DCD6");
-  g.addColorStop(0.55, "#E6C0B8");
-  g.addColorStop(1, "#D7A9A1");
+  g.addColorStop(0, "#F0BEC3");
+  g.addColorStop(0.55, "#E8A6AE");
+  g.addColorStop(1, "#DA8E98");
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, w, h);
 
   const sheen = ctx.createLinearGradient(0, 0, w, h);
   sheen.addColorStop(0.3, "rgba(255,255,255,0)");
-  sheen.addColorStop(0.48, "rgba(255,255,255,0.28)");
+  sheen.addColorStop(0.48, "rgba(255,255,255,0.14)");
   sheen.addColorStop(0.62, "rgba(255,255,255,0)");
   ctx.fillStyle = sheen;
   ctx.fillRect(0, 0, w, h);
@@ -34,6 +34,13 @@ function paintFoil(canvas) {
     ctx.arc(Math.random() * w, Math.random() * h, (0.5 + Math.random() * 1.1) * s, 0, Math.PI * 2);
     ctx.fill();
   }
+
+  // sits below centre, clear of the chandelier
+  ctx.font = `${w * 0.15}px Allura, cursive`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "#4A372F";
+  ctx.fillText("Scratch here", w / 2, h * 0.62);
 }
 
 /*
@@ -133,6 +140,7 @@ export default function ScratchDate() {
       paintFoil(canvas);
     };
     size();
+    document.fonts.load("20px Allura").then(size); // the hint needs the script font on the canvas
     const ro = new ResizeObserver(size);
     ro.observe(box);
     return () => ro.disconnect();
@@ -187,7 +195,7 @@ export default function ScratchDate() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.45 }}
           >
-            {revealed ? "Our forever begins" : "Scratch to Reveal"}
+            {revealed ? "Our forever begins" : "Our Special Day"}
           </motion.h2>
         </AnimatePresence>
         <DiamondRule />

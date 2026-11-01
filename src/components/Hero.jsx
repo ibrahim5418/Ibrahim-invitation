@@ -32,12 +32,12 @@ export default function Hero({ ready }) {
             presence at the Nikkah of
           </p>
           <h1 className="script hero-name">{groom.name}</h1>
-          <p className="caps hero-of">Son of</p>
-          <p className="hero-parents">{groom.parents}</p>
+          <p className="hero-qualification">{groom.qualification}</p>
+          <p className="hero-parents">S/o {groom.parents}</p>
           <p className="hero-amp">&amp;</p>
           <h1 className="script hero-name">{bride.name}</h1>
-          <p className="caps hero-of">Daughter of</p>
-          <p className="hero-parents">{bride.parents}</p>
+          <p className="hero-qualification">{bride.qualification}</p>
+          <p className="hero-parents">D/o {bride.parents}</p>
           <p className="caps hero-caps hero-forever">
             As they begin their forever in
             <br />

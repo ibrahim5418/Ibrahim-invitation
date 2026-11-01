@@ -99,7 +99,8 @@ img { display: block; max-width: 100%; }
 .hero-text .diamond-rule { margin-top: 1.8cqw; }
 .hero-caps { font-size: 2.1cqw; letter-spacing: 0.12em; line-height: 1.6; color: var(--taupe); margin-top: 3.4cqw; }
 .hero-name { font-size: 7.4cqw; color: var(--rose); margin-top: 2.2cqw; white-space: nowrap; }
-.hero-of { font-size: 2cqw; letter-spacing: 0.16em; color: var(--taupe); margin-top: 0.3cqw; }
+/* mixed case on purpose: "M.Sc" must not be uppercased */
+.hero-qualification { font-family: "DM Sans", sans-serif; font-weight: 500; font-size: 2.2cqw; letter-spacing: 0.1em; color: var(--taupe); }
 .hero-parents { font-style: italic; font-size: 3cqw; color: var(--taupe); margin-top: 0.8cqw; }
 .hero-amp { font-style: italic; font-size: 6.6cqw; line-height: 1; color: var(--gold); margin-top: 2cqw; }
 .hero-amp + .hero-name { margin-top: 1cqw; }
