@@ -39,7 +39,7 @@ function paintFoil(canvas) {
   ctx.font = `${w * 0.15}px Allura, cursive`;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillStyle = "#4A372F";
+  ctx.fillStyle = "#7D5252";
   ctx.fillText("Scratch here", w / 2, h * 0.62);
 }
 

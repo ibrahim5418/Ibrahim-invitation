@@ -22,14 +22,16 @@ export default function Hero({ ready }) {
           animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: ready ? 0.35 : 0 }}
         >
-          <p className="bismillah" lang="ar" dir="rtl" aria-label="Bismillah ir-Rahman ir-Rahim">
-            بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
-          </p>
+          <img className="bismillah" src={art.bismillah} alt="Bismillah ir-Rahman ir-Rahim" />
           <DiamondRule filled width="24cqw" />
           <p className="caps hero-caps">
-            We request the honour of your
+            With the blessings and mercy
             <br />
-            presence at the Nikkah of
+            of Allah, I cordially invite you
+            <br />
+            to be a part of my Nikkah
+            <br />
+            and the blessed occasions
           </p>
           <h1 className="script hero-name">{groom.name}</h1>
           <p className="hero-qualification">{groom.qualification}</p>
@@ -38,10 +40,10 @@ export default function Hero({ ready }) {
           <h1 className="script hero-name">{bride.name}</h1>
           <p className="hero-qualification">{bride.qualification}</p>
           <p className="hero-parents">D/o {bride.parents}</p>
-          <p className="caps hero-caps hero-forever">
-            As they begin their forever in
+          <p className="caps hero-caps hero-closing">
+            Together in faith, united in love,
             <br />
-            faith and love.
+            blessed for a lifetime
           </p>
           <p className="caps hero-scroll">Scroll</p>
           <span className="hero-scroll-line" />
