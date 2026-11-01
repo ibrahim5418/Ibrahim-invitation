@@ -95,18 +95,18 @@ img { display: block; max-width: 100%; }
   display: flex; flex-direction: column; align-items: center; text-align: center;
 }
 /* one line, sized to sit inside the arch where it is wide enough */
-.bismillah { font-family: "Amiri", serif; color: #6E5446; font-size: 4.4cqw; line-height: 1.4; white-space: nowrap; }
+.bismillah { width: 40cqw; height: auto; }
 .hero-text .diamond-rule { margin-top: 1.8cqw; }
-.hero-caps { font-size: 2.1cqw; letter-spacing: 0.12em; line-height: 1.6; color: var(--taupe); margin-top: 3.4cqw; }
+.hero-caps { font-size: 2.1cqw; letter-spacing: 0.12em; line-height: 1.5; color: var(--taupe); margin-top: 2.8cqw; }
 .hero-name { font-size: 7.4cqw; color: var(--rose); margin-top: 2.2cqw; white-space: nowrap; }
 /* mixed case on purpose: "M.Sc" must not be uppercased */
 .hero-qualification { font-family: "DM Sans", sans-serif; font-weight: 500; font-size: 2.2cqw; letter-spacing: 0.1em; color: var(--taupe); }
 .hero-parents { font-style: italic; font-size: 3cqw; color: var(--taupe); margin-top: 0.8cqw; }
 .hero-amp { font-style: italic; font-size: 6.6cqw; line-height: 1; color: var(--gold); margin-top: 2cqw; }
 .hero-amp + .hero-name { margin-top: 1cqw; }
-.hero-forever { margin-top: 4.4cqw; }
-.hero-scroll { font-size: 2cqw; letter-spacing: 0.2em; color: var(--cocoa); margin-top: 7cqw; }
-.hero-scroll-line { width: 1px; height: 4.5cqw; margin-top: 1.4cqw; background: linear-gradient(var(--gold), rgba(201, 162, 94, 0)); }
+.hero-closing { margin-top: 3.4cqw; }
+.hero-scroll { font-size: 2cqw; letter-spacing: 0.2em; color: var(--cocoa); margin-top: 3.6cqw; }
+.hero-scroll-line { width: 1px; height: 3.5cqw; margin-top: 1.4cqw; background: linear-gradient(var(--gold), rgba(201, 162, 94, 0)); }
 
 /* scratch */
 .scratch-sec { padding-bottom: 104px; }
