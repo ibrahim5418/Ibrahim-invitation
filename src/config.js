@@ -1,18 +1,12 @@
 // All the invitation's wording lives here; edit this file to change any detail.
 export const wedding = {
-  groom: { name: "Mohamed Ibrahim", first: "Ibrahim", parents: "Mr. Abdul Azees" },
-  bride: { name: "Naseeha Fathima", first: "Naseeha", parents: "Mr. Abdul Kalam" },
+  groom: { name: "Mohamed Ibrahim", first: "Ibrahim", qualification: "MCA", parents: "Mr. Abdul Azees" },
+  bride: { name: "Naseeha Fathima", first: "Naseeha", qualification: "M.Sc CDCN", parents: "Mr. Abdul Kalam" },
 
   // Shown behind the scratch foil.
   reveal: { date: "December 24, 2026", dayTime: "Thursday • 05:00 PM" },
 
   events: [
-    {
-      name: "Reception",
-      when: "December 24 • 4:00 PM",
-      place: "Chekkadi Masjid",
-      mapUrl: "https://maps.app.goo.gl/16sSErxox6QnqiFw9",
-    },
     {
       name: "Nikkah",
       when: "December 24 • 5:00 PM",
