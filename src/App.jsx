@@ -4,6 +4,7 @@ import { wedding } from "./config";
 import Intro from "./components/Intro";
 import Hero from "./components/Hero";
 import ScratchDate from "./components/ScratchDate";
+import Countdown from "./components/Countdown";
 import { Blessed, Festivities, Hearts } from "./components/Sections";
 import MusicButton from "./components/MusicButton";
 
@@ -19,7 +20,7 @@ export default function App() {
 
   const handleTap = () => {
     // audio must start inside the tap itself, or mobile browsers block it
-    if (wedding.music) audioRef.current?.play().catch(() => {});
+    if (wedding.music) audioRef.current?.start();
   };
 
   return (
@@ -28,6 +29,7 @@ export default function App() {
         <Hero ready={ready} />
         <Blessed />
         <ScratchDate />
+        <Countdown />
         <Festivities />
         <Hearts />
       </main>
