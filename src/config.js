@@ -21,8 +21,11 @@ export const wedding = {
     },
   ],
 
-  // Optional background music: put an mp3 in /public and set e.g. "/music.mp3".
-  music: null,
+  // The countdown runs to this moment (India time, +05:30).
+  countdownTo: "2026-12-24T17:00:00+05:30",
+
+  // Background song: starts when the guest taps to open. Set to null to turn it off.
+  music: "/music.mp3",
 };
 
 // Painted artwork lives in /public/art. Each slot falls back to a plain colour until its file exists.
